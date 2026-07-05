@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F4F9F6] text-[#1A2E26] overflow-x-hidden font-sans antialiased;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .domain-hero {
+    font-size: 4rem;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #1A2E26;
+  }
+
+  @media (max-width: 768px) {
+    .domain-hero {
+      font-size: 2.5rem;
+    }
+  }
+
+  .section-header {
+    font-size: 2.1rem;
+    line-height: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1A2E26;
+  }
+
+  .value-card {
+    transition:
+      transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .value-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  }
+
+  .modern-pill {
+    background: rgba(45, 139, 102, 0.1);
+    color: #2D8B66;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .clean-section {
+    background: white;
+    border: 1px solid #D9EDE4;
+  }
+
+  .nav-scrolled {
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 0.05);
+  }
+
+  .hero-image-glow {
+    box-shadow:
+      0 25px 50px -12px rgba(45, 139, 102, 0.25),
+      0 0 0 1px rgba(45, 139, 102, 0.08);
+  }
+}

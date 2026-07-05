@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ACQUISITION_MAILTO } from '../config/site';
+---
+
+<BaseLayout title="Page Not Found | brazilianwax.training" noindex={true}>
+  <main class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center max-w-md">
+      <p class="text-6xl font-display text-brand-500 mb-4">404</p>
+      <h1 class="text-2xl font-semibold mb-4">Page not found</h1>
+      <p class="text-[#3D5A4F] mb-8">The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="inline-flex items-center gap-x-2 text-brand-500 hover:text-brand-600 font-semibold">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Return home</span>
+      </a>
+      <p class="mt-8 text-sm text-[#5C7A6E]">
+        Interested in this domain?
+        <a href={ACQUISITION_MAILTO} class="text-brand-500 hover:underline">Contact us</a>
+      </p>
+    </div>
+  </main>
+</BaseLayout>

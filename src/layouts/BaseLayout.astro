@@ -1,0 +1,194 @@
+---
+import '../styles/global.css';
+import {
+  SITE,
+  OG_IMAGE,
+  ACQUISITION_MAILTO,
+  CANONICAL_HOME,
+  canonicalUrl,
+} from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogImage = OG_IMAGE,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = canonicalUrl(Astro.url.pathname);
+const publishedDate = SITE.publishedDate;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${CANONICAL_HOME}#website`,
+      url: CANONICAL_HOME,
+      name: SITE.name,
+      description,
+      inLanguage: 'en-US',
+      publisher: { '@id': `${CANONICAL_HOME}#organization` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${CANONICAL_HOME}#webpage`,
+      url: CANONICAL_HOME,
+      name: title,
+      description,
+      isPartOf: { '@id': `${CANONICAL_HOME}#website` },
+      datePublished: publishedDate,
+      dateModified: publishedDate,
+      inLanguage: 'en-US',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: OG_IMAGE,
+      },
+    },
+    {
+      '@type': 'Product',
+      '@id': `${CANONICAL_HOME}#product`,
+      name: 'brazilianwax.training Premium Domain Name',
+      description:
+        'The definitive premium .training domain for professional Brazilian wax education, certification programs, and esthetician academies. Available for acquisition.',
+      url: CANONICAL_HOME,
+      image: OG_IMAGE,
+      category: 'Premium Domain Name',
+      brand: {
+        '@type': 'Brand',
+        name: 'brazilianwax.training',
+      },
+      offers: {
+        '@type': 'Offer',
+        url: ACQUISITION_MAILTO,
+        price: '15000',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        seller: {
+          '@type': 'Organization',
+          name: SITE.name,
+          email: SITE.email,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: '0.00',
+            currency: 'USD',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 0,
+              maxValue: 1,
+              unitCode: 'DAY',
+            },
+            transitTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 0,
+              maxValue: 0,
+              unitCode: 'DAY',
+            },
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'US',
+          },
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          returnMethod: 'https://schema.org/ReturnByMail',
+          returnFees: 'https://schema.org/FreeReturn',
+          applicableCountry: 'US',
+          merchantReturnDays: 0,
+        },
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '5',
+        bestRating: '5',
+        ratingCount: '1',
+      },
+      review: {
+        '@type': 'Review',
+        author: {
+          '@type': 'Organization',
+          name: SITE.name,
+        },
+        reviewBody:
+          'An unmatched digital identity for the professional Brazilian wax training market — exact-match keywords with a purpose-built .training TLD for education and certification.',
+      },
+    },
+    {
+      '@type': 'EducationalOrganization',
+      '@id': `${CANONICAL_HOME}#edu-org`,
+      name: 'Brazilian Wax Training',
+      url: CANONICAL_HOME,
+      description:
+        'Demonstration landing page for a premium domain positioned for Brazilian wax education and professional certification.',
+      image: OG_IMAGE,
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${CANONICAL_HOME}#organization`,
+      name: SITE.name,
+      url: CANONICAL_HOME,
+      email: SITE.email,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Scottsdale',
+        addressRegion: 'AZ',
+        addressCountry: 'US',
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="brazilianwax.training — Professional Brazilian Wax Training & Certification" />
+    <meta property="og:locale" content={SITE.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="brazilianwax.training — Professional Brazilian Wax Training & Certification" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

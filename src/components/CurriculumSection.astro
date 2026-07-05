@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const modules = (await getCollection('modules')).sort((a, b) => a.data.order - b.data.order);
+
+const levelColors: Record<string, string> = {
+  Foundational: 'bg-brand-100 text-brand-700',
+  Intermediate: 'bg-amber-100 text-amber-800',
+  Advanced: 'bg-rose-100 text-rose-800',
+};
+---
+
+<section id="curriculum" class="max-w-6xl mx-auto px-6 py-16">
+  <div class="text-center mb-10">
+    <div class="modern-pill inline-block mb-3">DEMONSTRATION CURRICULUM</div>
+    <h2 class="section-header tracking-tight">Sample training modules</h2>
+    <p class="mt-4 text-[#3D5A4F] max-w-2xl mx-auto">
+      Illustrative course structure powered by Content Collections — ready to expand into a full LMS or certification program.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    {
+      modules.map(({ data, body }) => (
+        <article class="value-card clean-section rounded-3xl p-7 flex flex-col">
+          <div class="flex items-center justify-between mb-4">
+            <span class={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${levelColors[data.level]}`}>
+              {data.level}
+            </span>
+            <span class="text-xs text-[#5C7A6E] font-medium">
+              <i class="fa-regular fa-clock mr-1"></i>
+              {data.duration}
+            </span>
+          </div>
+          <h3 class="font-semibold text-lg tracking-tight mb-2">{data.title}</h3>
+          <p class="text-sm text-[#3D5A4F] leading-relaxed flex-1">{body.trim()}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

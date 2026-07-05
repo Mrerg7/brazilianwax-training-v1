@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+const useCases = (await getCollection('useCases')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="use-cases" class="bg-white border-y border-[#D9EDE4]">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <div class="modern-pill inline-block mb-3">VERSATILE &amp; SCALABLE</div>
+      <h2 class="section-header tracking-tight">Built for every training business model</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        useCases.map(({ data }) => (
+          <div class="value-card clean-section rounded-3xl p-8">
+            <div class="flex items-center gap-x-4 mb-4">
+              <i class={`fa-solid ${data.icon} text-brand-500 text-xl`} />
+              <h4 class="font-semibold">{data.title}</h4>
+            </div>
+            <p class="text-[#3D5A4F] text-sm leading-relaxed">{data.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

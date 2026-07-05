@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+
+const highlights = (await getCollection('highlights')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="why" class="max-w-6xl mx-auto px-6 pb-16">
+  <div class="text-center mb-10">
+    <div class="modern-pill inline-block mb-3">SEO • CREDIBILITY • EDGE DELIVERY</div>
+    <h2 class="section-header tracking-tight">Why brazilianwax.training stands out</h2>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    {
+      highlights.map(({ data }) => (
+        <div class="value-card clean-section rounded-3xl p-8">
+          <div class="w-11 h-11 bg-[#F0F7F4] rounded-2xl flex items-center justify-center mb-6">
+            <i class={`fa-solid ${data.icon} text-brand-500 text-xl`} />
+          </div>
+          <h3 class="font-semibold text-xl tracking-tight mb-3">{data.title}</h3>
+          <p class="text-[#3D5A4F] leading-relaxed">{data.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

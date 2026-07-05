@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import WhySection from '../components/WhySection.astro';
+import MarketSection from '../components/MarketSection.astro';
+import CurriculumSection from '../components/CurriculumSection.astro';
+import UseCasesSection from '../components/UseCasesSection.astro';
+import ClosingCTA from '../components/ClosingCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Nav />
+  <main>
+    <Hero />
+    <WhySection />
+    <MarketSection />
+    <CurriculumSection />
+    <UseCasesSection />
+    <ClosingCTA />
+    <Footer />
+  </main>
+</BaseLayout>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav?.classList.add('nav-scrolled', 'bg-white/95');
+    } else {
+      nav?.classList.remove('nav-scrolled');
+    }
+  });
+</script>
