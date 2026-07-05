@@ -17,22 +17,16 @@
   }
 
   .domain-hero {
-    font-size: 4rem;
-    line-height: 1.05;
+    font-size: clamp(1.875rem, 7vw, 4rem);
+    line-height: 1.1;
     font-weight: 800;
     letter-spacing: -0.04em;
     color: #1A2E26;
   }
 
-  @media (max-width: 768px) {
-    .domain-hero {
-      font-size: 2.5rem;
-    }
-  }
-
   .section-header {
-    font-size: 2.1rem;
-    line-height: 2.4rem;
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.025em;
     color: #1A2E26;
@@ -67,9 +61,4 @@
     box-shadow: 0 1px 0 0 rgb(0 0 0 / 0.05);
   }
 
-  .hero-image-glow {
-    box-shadow:
-      0 25px 50px -12px rgba(45, 139, 102, 0.25),
-      0 0 0 1px rgba(45, 139, 102, 0.08);
-  }
 }

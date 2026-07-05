@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const highlights = (await getCollection('highlights')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section id="why" class="max-w-6xl mx-auto px-6 pb-16">
+<section id="why" class="max-w-6xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16">
   <div class="text-center mb-10">
     <div class="modern-pill inline-block mb-3">SEO • CREDIBILITY • EDGE DELIVERY</div>
     <h2 class="section-header tracking-tight">Why brazilianwax.training stands out</h2>
