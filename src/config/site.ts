@@ -8,6 +8,7 @@ export const SITE = {
   locale: 'en_US',
   location: 'Scottsdale, Arizona',
   publishedDate: '2026-07-05',
+  googleSiteVerification: 'i_4N5YJ3HGUnLUNxd5p54jT1FPZxA8xSxD2xO54vb1I',
 } as const;
 
 export const CF_IMAGES = {
